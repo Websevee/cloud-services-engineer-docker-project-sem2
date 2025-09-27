@@ -1,17 +1,13 @@
 server {
-    listen 8080;
+    listen 80;
     server_name localhost;
     root /usr/share/nginx/html/;
     index index.html;
-    
-    location = / {
-        return 301 /momo-store/;
-    }
 
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|map)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
-        try_files $uri =404;
+        try_files $uri ${APP_PATH}/404.html;
     }
 
     location /api/{
@@ -22,7 +18,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    location /momo-store/ {
-        try_files $uri $uri/ /momo-store/index.html;
+    location ${APP_PATH}/ {
+        try_files $uri $uri/ ${APP_PATH}/index.html;
     }
 }

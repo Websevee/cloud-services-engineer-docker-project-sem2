@@ -13,17 +13,16 @@ services:
       - app-network
 
   frontend:
-    build: 
+    build:
       context: ./frontend
-      dockerfile: Dockerfile.production 
-      args:
+      dockerfile: Dockerfile
+      args: &frontend_vars
         NODE_ENV: ${NODE_ENV:-production}
         VUE_APP_API_URL: ${VUE_APP_API_URL:-/api}
+        APP_PATH: ${APP_PATH:-/momo-store}
     ports:
-      - "80:8080"
-    environment:
-      - NODE_ENV=${NODE_ENV:-production}
-      - VUE_APP_API_URL=${VUE_APP_API_URL:-/api}
+      - "80:80"
+    environment: *frontend_vars
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
