@@ -1,5 +1,5 @@
 # 1. Builder
-FROM node:16-alpine AS build
+FROM node:24-alpine AS build
 
 WORKDIR /app
 
@@ -15,6 +15,9 @@ ARG APP_PATH
 ENV NODE_ENV=${NODE_ENV}
 ENV VUE_APP_API_URL=${VUE_APP_API_URL}
 ENV APP_PATH=${APP_PATH}
+
+# Для решения проблемы совместимости
+ENV NODE_OPTIONS="--openssl-legacy-provider"
 
 RUN npm run build
 
