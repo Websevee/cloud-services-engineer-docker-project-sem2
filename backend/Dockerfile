@@ -16,9 +16,7 @@ WORKDIR /app
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-COPY --from=builder /app/backend .
-
-RUN chown appuser:appgroup /app/backend
+COPY --from=builder --chown=appuser:appgroup /app/backend .
 
 RUN apk add --no-cache curl
 

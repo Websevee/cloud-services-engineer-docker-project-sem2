@@ -1,9 +1,12 @@
 # Пельменная №2
 
-## Для Development
+## Запуск локально
 
-docker-compose -f docker-compose.yml up -d --build
+Development: docker-compose up -d
+Production: docker-compose -f docker-compose.production.yml up -d
 
-## Для Production
+## Итоговый размер образов
 
-docker-compose -f docker-compose.production.yml up -d --build
+
+
+
