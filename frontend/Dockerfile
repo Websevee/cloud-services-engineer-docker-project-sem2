@@ -1,13 +1,6 @@
 # 1. Builder
 FROM node:24-alpine AS build
 
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
 ARG NODE_ENV=development
 ARG VUE_APP_API_URL=/api
 ARG APP_PATH
@@ -15,6 +8,13 @@ ARG APP_PATH
 ENV NODE_ENV=${NODE_ENV}
 ENV VUE_APP_API_URL=${VUE_APP_API_URL}
 ENV APP_PATH=${APP_PATH}
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --include=dev
+
+COPY . .
 
 # Для решения проблемы совместимости
 ENV NODE_OPTIONS="--openssl-legacy-provider"
