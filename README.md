@@ -10,7 +10,7 @@
 2. Клонируйте репозиторий
 3. Запустите проект в нужной конфигурации:
 
-### Для разработки:
+### Для development:
 ```bash
 docker-compose up -d
 ```
@@ -54,4 +54,4 @@ docker-compose -f docker-compose.production.yml up -d
 - http://localhost - для конфигурации разработки
 - http://localhost/momo-store - для production конфигурации
 
-Административный API доступен по адресу http://localhost:8081/ (только внутри Docker сети).
+API бэкенда доступен по адресу http://localhost:8081/ (только внутри Docker сети).
